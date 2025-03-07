@@ -1,22 +1,22 @@
 create table if not exists blogs(
-                                    id integer auto_increment primary key,
-                                    datetime timestamp default now(),
+    id integer auto_increment primary key,
+    datetime timestamp default now(),
     title varchar(512),
     text clob,
     picture clob,
     tags varchar(256));
 
 create table if not exists comments(
-                                       id integer auto_increment primary key,
-                                       datetime timestamp default now(),
+    id integer auto_increment primary key,
+    datetime timestamp default now(),
     blog integer not null,
     comment varchar(1024) not null);
 
 
 create table if not exists likes(
-                                    id integer auto_increment primary key,
-                                    datetime timestamp default now(),
-    blog integer not null);
+   id integer auto_increment primary key,
+   datetime timestamp default now(),
+   blog integer not null);
 
 insert into blogs(title, text, picture, tags)
 values ('Чехия зафиксировала перебои с поставками нефти по «Дружбе»',
