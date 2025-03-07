@@ -1,11 +1,10 @@
-package ru.yandex.practicum.repository.impl;
+package ru.yandex.practicum.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.entities.BlogEntity;
 import ru.yandex.practicum.entities.BlogsEntity;
-import ru.yandex.practicum.repository.BlogRepository;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ import java.util.List;
 public class JdbcNativeBlogRepository implements BlogRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
 
     @Override
     public List<BlogsEntity> findPage(Integer page, Integer size) {
@@ -95,6 +93,13 @@ public class JdbcNativeBlogRepository implements BlogRepository {
         jdbcTemplate.update("delete from comments where blog = ?; " +
                 "delete from likes where blog = ?; " +
                 "delete from blogs where id = ?; ", id, id, id);
+    }
+
+    @Override
+    public void deleteAll() {
+        jdbcTemplate.update("delete from comments; " +
+                "delete from likes; " +
+                "delete from blogs; ");
     }
 
     @Override

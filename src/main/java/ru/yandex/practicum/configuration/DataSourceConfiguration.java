@@ -15,18 +15,8 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.yml")
 public class DataSourceConfiguration {
-
-//    @Value("${spring.datasource.url}")
-//    private String url;
-//
-//    @Value("${spring.datasource.username}")
-//    private String username;
-//
-//    @Value("${spring.datasource.password}")
-//    private String password;
-
 
     @Bean
     public DataSource dataSource(

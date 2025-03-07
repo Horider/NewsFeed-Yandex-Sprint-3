@@ -1,19 +1,16 @@
-package ru.yandex.practicum.repository.impl;
+package ru.yandex.practicum.repository;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.yandex.practicum.entities.CommentEntity;
-import ru.yandex.practicum.repository.CommentRepository;
 
 import java.util.List;
 
 @Repository
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JdbcNativeCommentRepository implements CommentRepository {
 
-    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Override

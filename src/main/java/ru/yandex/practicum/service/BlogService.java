@@ -1,8 +1,6 @@
 package ru.yandex.practicum.service;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.mapping.BlogMapper;
 import ru.yandex.practicum.model.BlogEditModel;

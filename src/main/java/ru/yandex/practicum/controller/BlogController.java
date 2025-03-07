@@ -17,7 +17,6 @@ import ru.yandex.practicum.model.CommentsModel;
 import ru.yandex.practicum.model.FilterModel;
 import ru.yandex.practicum.service.BlogService;
 import ru.yandex.practicum.service.CommentService;
-import ru.yandex.practicum.service.LikeService;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,16 +26,14 @@ import java.util.Optional;
 @RequestMapping("/blog")
 public class BlogController {
 
-    private final LikeService likeService;
     private final BlogService blogService;
     private final CommentService commentService;
-
     private final static Integer DEFAULT_SIZE_PAGE = 10;
 
     @GetMapping
-    public String getFirstPageBlogs(@RequestParam(required = false, name = "p") String page,
-                                    @RequestParam(required = false, name = "s") String size,
-                                    @RequestParam(required = false, name = "f") String filterTag,
+    public String getFirstPageBlogs(@RequestParam(required = false, name = "page") String page,
+                                    @RequestParam(required = false, name = "size") String size,
+                                    @RequestParam(required = false, name = "filter") String filterTag,
                                     Model model) {
         int intPage, intSize;
         try {
@@ -91,33 +88,6 @@ public class BlogController {
         model.addAttribute("comments", comments);
         return "blogView";
     }
-
-    @PostMapping(value = "/{id}", params = "_method=like")
-    public String addLike(@PathVariable(name = "id") Long blogId) {
-        likeService.addLike(blogId);
-        return "redirect:/blog/"+blogId;
-    }
-
-    @PostMapping(value = "/{id}", params = "_method=deleteComment")
-    public String deleteComment(@PathVariable(name = "id") Long blogId,@RequestParam(name = "comment") Long commentId) {
-        commentService.deleteById(commentId);
-        return "redirect:/blog/"+blogId;
-    }
-
-    @PostMapping(value = "/{id}", params = "_method=editComment")
-    public String editComment(@PathVariable(name = "id") Long blogId,
-                              CommentsModel commentsModel) {
-        commentService.save(commentsModel);
-        return "redirect:/blog/"+blogId;
-    }
-
-    @PostMapping(value = "/{id}", params = "_method=newComment")
-    public String newComment(@PathVariable(name = "id") Long blogId,
-                              CommentsModel commentsModel) {
-        commentService.create(commentsModel);
-        return "redirect:/blog/"+blogId;
-    }
-
 
     @PostMapping(value = "/{id}", params = "_method=delete")
     public String deleteBlog(@PathVariable(name = "id") Long blogId) {

@@ -1,6 +1,5 @@
 package ru.yandex.practicum.repository;
 
-
 import ru.yandex.practicum.entities.BlogEntity;
 import ru.yandex.practicum.entities.BlogsEntity;
 
@@ -18,6 +17,8 @@ public interface BlogRepository {
     BlogEntity getById(Long id);
 
     void deleteById(Long id);
+
+    void deleteAll();
 
     void save(BlogEntity blogEntity);
 

@@ -1,16 +1,13 @@
-package ru.yandex.practicum.repository.impl;
+package ru.yandex.practicum.repository;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ru.yandex.practicum.repository.LikeRepository;
 
 @Repository
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JdbcNativeLikeRepository implements LikeRepository {
 
-    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Override
