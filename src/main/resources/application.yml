@@ -12,3 +12,6 @@ lombok:
   addLombokGeneratedAnnotation: true
   experimental:
     flagUsage: WARNING
+
+server:
+  port: 8081
